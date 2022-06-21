@@ -130,7 +130,7 @@ public class Enemy implements Runnable{
 			}
 
 			try {
-				Thread.sleep(50);
+				Thread.sleep(45);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

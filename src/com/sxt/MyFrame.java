@@ -153,7 +153,7 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 		while(true) {
 			repaint();
 			try {
-				Thread.sleep(50);
+				Thread.sleep(45);
 				
 				if (mario.getX() >= 775) {
 					//判断走到地图右边且背景不是最后一关

@@ -52,7 +52,7 @@ public class Obstacle implements Runnable{
 			}
 
 			try {
-				Thread.sleep(50);
+				Thread.sleep(45);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

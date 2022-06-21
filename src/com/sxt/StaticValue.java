@@ -36,7 +36,10 @@ public class StaticValue {
 	public static List<BufferedImage> flower = new ArrayList<>();
 	//路径的前缀，方便后续调用
 	public static String path = System.getProperty("user.dir") + "/src/images/";
-	
+	//run_L
+	public static String pathL = System.getProperty("user.dir") + "/src/run_L/";
+	//run_L
+	public static String pathR = System.getProperty("user.dir") + "/src/run_R/";
 	
 	
 	//初始化方法
@@ -62,9 +65,9 @@ public class StaticValue {
 		}
 		
 		//加载马里奥向左跑
-		for(int i = 1; i <= 2; i ++) {
+		for(int i = 0; i <=21 ; i ++) {
 			try {
-				run_L.add(ImageIO.read(new File(path + "s_mario_run" + i + "_L.png")));
+				run_L.add(ImageIO.read(new File(pathL +  i + ".png")));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -73,7 +76,7 @@ public class StaticValue {
 		//加载马里奥向右跑
 		for(int i = 1; i <= 2; i ++) {
 			try {
-				run_R.add(ImageIO.read(new File(path + "s_mario_run" + i + "_R.png")));
+				run_R.add(ImageIO.read(new File(pathR +  i + ".png")));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
