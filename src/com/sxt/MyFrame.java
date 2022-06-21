@@ -33,6 +33,7 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 		this.setSize(800, 600);
 		//设置窗口居中显示
 		this.setLocationRelativeTo(null);
+
 		//设置窗口的可见性
 		this.setVisible(true);
 		//设置点击窗口上的关闭键，结束程序

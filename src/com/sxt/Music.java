@@ -8,6 +8,7 @@ import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
 public class Music {
+	String name;
 	public Music() throws JavaLayerException, FileNotFoundException {
 		Player player;
 		String str = System.getProperty("user.dir") + "/src/Music/music.wav";
