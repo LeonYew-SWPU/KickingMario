@@ -283,7 +283,7 @@ public class Mario implements Runnable {
 			}
 
 			try {
-				Thread.sleep(45);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
