@@ -54,3 +54,4 @@ Git建立：        黎恩瑜
 >  - [(菜鸟教程)Git可视化极简易教程 — GitGUI使用方法](https://www.runoob.com/w3cnote/git-gui-window.html)
 > -  [(Gitee)Gitee操作极速上手指南](https://gitee.com/mvphp/gitee_yes)
 > -  [(ITPOW)Git Gui 快速使用教程—ITPOW](http://www.cftea.com/c/2017/04/7900.asp)
+> - [(Youtube)Git GUI Explained](https://www.youtube.com/watch?v=icyOhrMNrOk)
