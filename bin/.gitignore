@@ -1,0 +1,10 @@
+# ignore a single file
+.classpath
+.project
+
+/resources/
+/.gitignore
+/README.md
+/src/
+/代码.png
+/代码.xmind
