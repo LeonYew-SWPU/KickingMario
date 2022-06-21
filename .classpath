@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Xiaoyao/Desktop/test/resources/jl-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Xiaoyao/Desktop/test/src/jl-1.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
