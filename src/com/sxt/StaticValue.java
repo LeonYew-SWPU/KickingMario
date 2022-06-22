@@ -76,7 +76,7 @@ public class StaticValue {
 		}
 		
 		//加载马里奥向右跑
-		for (int i = 1; i <= 21; i++) {
+		for (int i = 0; i <= 21; i++) {
 			try {
 				run_R.add(ImageIO.read(new File(pathR +  i + ".png")));
 			} catch (IOException e) {

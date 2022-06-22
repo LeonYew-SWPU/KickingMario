@@ -23,7 +23,7 @@ public class Mario implements Runnable {
 	// 马里奥的跳跃速度
 	private int ySpeed;
 	// 定义一个索引
-	private int index;
+	private int index = 0;
 	// 马里奥上升时间
 	private int upTime = 0;
 	// 判断马里奥是否走到了城堡门口
@@ -135,7 +135,7 @@ public class Mario implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
+		for (index = 0; index < 22; index++) {
 			// 判断是否处于障碍物上
 			boolean onObstacle = false;
 			// 判断是否可以往右走
@@ -255,34 +255,14 @@ public class Mario implements Runnable {
 			if (status.contains("move")) {
 				// 判断是否向左移动
 				if ("move--left".equals(status)) {
-					for (index = 0; index < 21; index++) {
-						show = StaticValue.run_L.get(index);// 展示马里奥的图片（索引）
+					show = StaticValue.run_L.get(index);// 展示马里奥的图片（索引）
 //						System.out.println("L:" + index);// 用于检查索引是否出错
-						if (index == 21) {
-							index = 0;
-						}
-						try {
-							Thread.sleep(45);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-
+					
 				}
 				// 判断是否向右移动
 				if ("move--right".equals(status)) {
-					for (index = 0; index < 21; index++) {
-						show = StaticValue.run_R.get(index);// 展示马里奥的图片（索引）
-						System.out.println("R:" + index);// 用于检查索引是否出错
-						if (index == 21) {
-							index = 0;
-						}
-						try {
-							Thread.sleep(45);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
+					show = StaticValue.run_R.get(index);// 展示马里奥的图片（索引）
+//						System.out.println("R:" + index);// 用于检查索引是否出错
 				}
 
 
@@ -305,8 +285,13 @@ public class Mario implements Runnable {
 				show = StaticValue.jump_R;
 			}
 
+//			System.out.println(index);//调试index
+			if(index == 21){
+				index = 0;
+			}
+			
 			try {
-				Thread.sleep(50);
+				Thread.sleep(45);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
