@@ -60,3 +60,6 @@ Git建立：        黎恩瑜
 </br>
 
 > [Xmind破解版原文](https://www.downkuai.com/soft/136552.html)
+</br>
+
+> [添加地图，地图根据人物移动](https://blog.csdn.net/qq_37175706/article/details/123602848)

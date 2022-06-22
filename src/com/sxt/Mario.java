@@ -2,6 +2,9 @@ package com.sxt;
 
 import java.awt.image.BufferedImage;
 
+import javax.swing.TransferHandler;
+
+
 public class Mario implements Runnable {
 	// 用于表示横纵坐标
 	private int x;
@@ -30,6 +33,7 @@ public class Mario implements Runnable {
 	// 表示分数
 	private int score = 0;
 
+	
 	public Mario() {
 	}
 
@@ -238,7 +242,7 @@ public class Mario implements Runnable {
 					}
 					y += ySpeed;
 				}
-
+				//坐标改变
 				if ((canLeft && xSpeed < 0) || (canRight && xSpeed > 0)) {
 					x += xSpeed;
 					// 判断马里奥是否到了最左边
@@ -253,14 +257,13 @@ public class Mario implements Runnable {
 				if ("move--left".equals(status)) {
 					for (index = 0; index < 21; index++) {
 						show = StaticValue.run_L.get(index);// 展示马里奥的图片（索引）
-						System.out.println("L:" + index);// 用于检查索引是否出错
+//						System.out.println("L:" + index);// 用于检查索引是否出错
 						if (index == 21) {
 							index = 0;
 						}
 						try {
 							Thread.sleep(45);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
@@ -277,7 +280,6 @@ public class Mario implements Runnable {
 						try {
 							Thread.sleep(45);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
@@ -309,11 +311,6 @@ public class Mario implements Runnable {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	// for the test
-	public void printXY() {
-		System.out.println(this.getX() + "," + this.getY());
 	}
 
 	public int getX() {

@@ -140,7 +140,7 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 		
 		// 绘制分数
 		Color c = graphics.getColor();
-		graphics.setColor(Color.BLACK);
+		graphics.setColor(Color.WHITE);
 		graphics.setFont(new Font("黑体", Font.BOLD, 25));
 		graphics.drawString("Score" + mario.getScore(), 300, 100);
 		graphics.setColor(c);// 还原graphics画笔颜色
