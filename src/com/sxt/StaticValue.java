@@ -49,17 +49,17 @@ public class StaticValue {
 			bg = ImageIO.read(new File(path + "bg.png"));
 			bg2 = ImageIO.read(new File(path + "bg2.png"));
 			//加载马里奥向左站立
-			stand_L = ImageIO.read(new File(path + "s_mario_stand_L.png"));
+			stand_L = ImageIO.read(new File(pathL + "stand.png"));
 			//加载马里奥向右站立
-			stand_R = ImageIO.read(new File(path + "s_mario_stand_R.png"));
+			stand_R = ImageIO.read(new File(pathR + "stand.png"));
 			//加载城堡
 			tower = ImageIO.read(new File(path + "tower.png"));
 			//加载旗杆
 			gan = ImageIO.read(new File(path + "gan.png"));
 			//加载马里奥向左跳跃
-			jump_L = ImageIO.read(new File(path + "s_mario_jump1_L.png"));
+			jump_L = ImageIO.read(new File(pathL + "jump.png"));
 			//加载马里奥向右跳跃
-			jump_R = ImageIO.read(new File(path + "s_mario_jump1_R.png"));
+			jump_R = ImageIO.read(new File(pathR + "jump.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
