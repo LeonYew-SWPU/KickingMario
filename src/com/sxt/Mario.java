@@ -15,6 +15,7 @@ public class Mario implements Runnable {
 	private BackGround backGround = new BackGround();
 	// 用来实现马里奥的动作
 	private Thread thread = null;
+	
 	// 马里奥的移动速度
 	private int xSpeed;
 	// 马里奥的跳跃速度
@@ -29,9 +30,9 @@ public class Mario implements Runnable {
 	private boolean isDeath = false;
 	// 表示分数
 	private int score = 0;
-
 	public Mario() {
 	}
+
 
 	public Mario(int x, int y) {
 		this.x = x;
@@ -247,44 +248,43 @@ public class Mario implements Runnable {
 					}
 				}
 			}
-			// 判断当前是否是移动状态
-			if (status.contains("move")) {
-				// 判断是否向左移动
-				if ("move--left".equals(status)) {
-					for (index = 0; index < 21; index++) {
-						show = StaticValue.run_L.get(index);// 展示马里奥的图片（索引）
-						System.out.println("L:" + index);// 用于检查索引是否出错
-						if (index == 21) {
-							index = 0;
-						}
-						try {
-							Thread.sleep(45);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-
-				}
-				// 判断是否向右移动
-				if ("move--right".equals(status)) {
-					for (index = 0; index < 21; index++) {
-						show = StaticValue.run_R.get(index);// 展示马里奥的图片（索引）
-						System.out.println("R:" + index);// 用于检查索引是否出错
-						if (index == 21) {
-							index = 0;
-						}
-						try {
-							Thread.sleep(45);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-				}
-
-
-			}
+//			// 判断当前是否是移动状态
+//			if (status.contains("move")) {
+//				// 判断是否向左移动
+//				if ("move--left".equals(status)) {
+//					for (index = 0; index < 21; index++) {
+//						show = StaticValue.run_L.get(index);// 展示马里奥的图片（索引）
+//						System.out.println("L:" + index);// 用于检查索引是否出错
+//						if (index == 21) {
+//							index = 0;
+//						}
+//						try {
+//							Thread.sleep(45);
+//						} catch (InterruptedException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//					}
+//
+//				}
+//				// 判断是否向右移动
+//				if ("move--right".equals(status)) {
+//					for (index = 0; index < 21; index++) {
+//						show = StaticValue.run_R.get(index);// 展示马里奥的图片（索引）
+//						System.out.println("R:" + index);// 用于检查索引是否出错
+//						if (index == 21) {
+//							index = 0;
+//						}
+//						try {
+//							Thread.sleep(45);
+//						} catch (InterruptedException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//					}
+//				}
+//
+//			}
 
 			// 判断是否向左停止
 			if ("stop--left".equals(status)) {
@@ -359,5 +359,22 @@ public class Mario implements Runnable {
 	public int getScore() {
 		return score;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+	
 
 }
