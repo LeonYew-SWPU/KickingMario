@@ -249,20 +249,41 @@ public class Mario implements Runnable {
 			}
 			// 判断当前是否是移动状态
 			if (status.contains("move")) {
-				for (int i = 0; i <= 21; i++) {
-					index = i;// 切换马里奥左跑动的两张图
-					if (i == 21) {
-						i = 0;
-					}
-					// 判断是否向左移动
-					if ("move--left".equals(status)) {
+				// 判断是否向左移动
+				if ("move--left".equals(status)) {
+					for (index = 0; index < 21; index++) {
 						show = StaticValue.run_L.get(index);// 展示马里奥的图片（索引）
+						System.out.println("L:" + index);// 用于检查索引是否出错
+						if (index == 21) {
+							index = 0;
+						}
+						try {
+							Thread.sleep(45);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
-					// 判断是否向右移动
-					if ("move--right".equals(status)) {
+
+				}
+				// 判断是否向右移动
+				if ("move--right".equals(status)) {
+					for (index = 0; index < 21; index++) {
 						show = StaticValue.run_R.get(index);// 展示马里奥的图片（索引）
+						System.out.println("R:" + index);// 用于检查索引是否出错
+						if (index == 21) {
+							index = 0;
+						}
+						try {
+							Thread.sleep(45);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
+
+
 			}
 
 			// 判断是否向左停止

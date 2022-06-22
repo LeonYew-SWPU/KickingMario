@@ -36,9 +36,9 @@ public class StaticValue {
 	public static List<BufferedImage> flower = new ArrayList<>();
 	//路径的前缀，方便后续调用
 	public static String path = System.getProperty("user.dir") + "/src/images/";
-	//run_L
+	// run_L马里奥向左跑的21张图
 	public static String pathL = System.getProperty("user.dir") + "/src/run_L/";
-	//run_L
+	// run_R马里奥向右跑的21张图
 	public static String pathR = System.getProperty("user.dir") + "/src/run_R/";
 	
 	
