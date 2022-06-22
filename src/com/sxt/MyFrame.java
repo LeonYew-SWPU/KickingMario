@@ -165,13 +165,13 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 				
 				//判断马里奥是否死亡
 				if (mario.isDeath()) {
-					JOptionPane.showMessageDialog(this, "GAME OVER!!");
+					JOptionPane.showMessageDialog(this, "你被打败了!!");
 					System.exit(0);
 				}
 				
 				//判断游戏是否结束
 				if(mario.isOK()){
-					JOptionPane.showMessageDialog(this, "恭喜你，成功通关了！");
+					JOptionPane.showMessageDialog(this, "恭喜你，扫黑成功！");
 					System.exit(0);
 				}
 				
