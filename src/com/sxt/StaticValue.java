@@ -1,12 +1,12 @@
 package com.sxt;
 
-import java.util.*;
-
-import javax.imageio.ImageIO;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.imageio.ImageIO;
 
 public class StaticValue {
 	//背景
@@ -74,7 +74,7 @@ public class StaticValue {
 		}
 		
 		//加载马里奥向右跑
-		for(int i = 1; i <= 21; i ++) {
+		for (int i = 1; i <= 21; i++) {
 			try {
 				run_R.add(ImageIO.read(new File(pathR +  i + ".png")));
 			} catch (IOException e) {
