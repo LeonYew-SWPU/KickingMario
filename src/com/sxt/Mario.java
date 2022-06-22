@@ -254,17 +254,17 @@ public class Mario implements Runnable {
 					if (i == 21) {
 						i = 0;
 					}
+					// 判断是否向左移动
+					if ("move--left".equals(status)) {
+						show = StaticValue.run_L.get(index);// 展示马里奥的图片（索引）
+					}
+					// 判断是否向右移动
+					if ("move--right".equals(status)) {
+						show = StaticValue.run_R.get(index);// 展示马里奥的图片（索引）
+					}
 				}
 			}
 
-			// 判断是否向左移动
-			if ("move--left".equals(status)) {
-				show = StaticValue.run_L.get(index);// 展示马里奥的图片（索引）
-			}
-			// 判断是否向右移动
-			if ("move--right".equals(status)) {
-				show = StaticValue.run_R.get(index);// 展示马里奥的图片（索引）
-			}
 			// 判断是否向左停止
 			if ("stop--left".equals(status)) {
 				show = StaticValue.stand_L;
