@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 public class StaticValue {
 	//背景
 	public static BufferedImage bg = null;
+	public static BufferedImage bg1 = null;
 	public static BufferedImage bg2 = null;
 	//马里奥向左跳跃
 	public static BufferedImage jump_L = null;
@@ -47,6 +48,7 @@ public class StaticValue {
 		try {
 			//加载背景图片
 			bg = ImageIO.read(new File(path + "bg.png"));
+			bg1 = ImageIO.read(new File(path + "bg1.png"));
 			bg2 = ImageIO.read(new File(path + "bg2.png"));
 			//加载马里奥向左站立
 			stand_L = ImageIO.read(new File(pathL + "stand.png"));

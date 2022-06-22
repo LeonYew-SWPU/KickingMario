@@ -36,8 +36,10 @@ public class BackGround {
 
         if (flag) {
             bgImage = StaticValue.bg2;
-        }else {
+        }else if(sort == 1){
             bgImage = StaticValue.bg;
+        }else {
+        	bgImage = StaticValue.bg1;
         }
 
         //判断是否是第一关
