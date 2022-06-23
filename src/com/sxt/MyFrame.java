@@ -1,17 +1,28 @@
 package com.sxt;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.font.GlyphVector;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import javazoom.jl.decoder.JavaLayerException;
 
@@ -27,13 +38,11 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 	//实现马里奥的运动,线程对象
 	private Thread thread = new Thread(this);
 	
-	
 	public MyFrame() {
 		//设置窗口的大小为800 * 600
 		this.setSize(800, 600);
 		//设置窗口居中显示
 		this.setLocationRelativeTo(null);
-
 		//设置窗口的可见性
 		this.setVisible(true);
 		//设置点击窗口上的关闭键，结束程序
@@ -43,11 +52,12 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 		//向窗口对象添加键盘监听器
 		this.addKeyListener(this);
 		//设置窗口名称
-		this.setTitle("扫黑玛丽");
+		this.setTitle("扫黑玛丽");	
+		
 		StaticValue.init();
 		// 初始化马里奥0
 		mario = new Mario(10, 385);
-
+		
 		//创建全部的场景
 		for (int i = 1; i <= 3; i++) {
 			allBg.add(new BackGround(i, i == 3 ? true : false));
@@ -141,8 +151,8 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 		// 绘制分数
 		Color c = graphics.getColor();
 		graphics.setColor(Color.WHITE);
-		graphics.setFont(new Font("黑体", Font.BOLD, 25));
-		graphics.drawString("Score" + mario.getScore(), 300, 100);
+		graphics.setFont(new Font("Kemco Pixel Bold",Font.PLAIN, 20));
+		graphics.drawString("Score: " + mario.getScore(), this.getWidth() / 2 - 70, 100);
 		graphics.setColor(c);// 还原graphics画笔颜色
 		//将图像绘制到窗口中
 		g.drawImage(offScreenImage,0,0,this);
@@ -150,6 +160,10 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 
 	@Override
 	public void run() {
+		//TODO Rank List Window.
+		{
+			RankWindow rw = new RankWindow(this);
+		}
 		while(true) {
 			repaint();
 			try {
@@ -165,20 +179,23 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 				
 				//判断马里奥是否死亡
 				if (mario.isDeath()) {
-					JOptionPane.showMessageDialog(this, "你被打败了!!");
+					JOptionPane.showMessageDialog(this, "GAME OVER!!");
 					System.exit(0);
 				}
 				
 				//判断游戏是否结束
 				if(mario.isOK()){
-					JOptionPane.showMessageDialog(this, "恭喜你，扫黑成功！");
-					System.exit(0);
+					break;
+//					System.exit(0);
 				}
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		}
+		}//while end
+		
+		
+		//TODO clip the rank window.
 	}
 }
 

@@ -23,7 +23,7 @@ public class Mario implements Runnable {
 	// 马里奥的跳跃速度
 	private int ySpeed;
 	// 定义一个索引
-	private int index = 0;
+	private int index;
 	// 马里奥上升时间
 	private int upTime = 0;
 	// 判断马里奥是否走到了城堡门口
