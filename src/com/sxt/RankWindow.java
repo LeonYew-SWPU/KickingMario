@@ -1,7 +1,9 @@
 package com.sxt;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,7 +21,7 @@ public class RankWindow extends JDialog{
 	//定义排行榜路径
 	public static String rankpath = System.getProperty("user.dir") + "/src/rank.txt";
 	//定义排行榜数组
-    private String[] ranks = new String[5];
+    private String[] ranks = new String[7];
 
 	
 	public RankWindow(MyFrame jf) {
@@ -36,6 +38,7 @@ public class RankWindow extends JDialog{
 	            {
 	            	ranks[i] = strTmp;
 	            }
+	            i++;
 	        }
 	        
 	        buffReader.close();
@@ -47,23 +50,40 @@ public class RankWindow extends JDialog{
 		
 		
 		JDialog jd = new JDialog(jf,"Rank");
-		jd.setLayout(new FlowLayout(FlowLayout.LEFT));
+//		jd.setLayout(new BorderLayout());
 		jd.setSize(300,400);
 		jd.setLocation(jf.getX() + jf.getWidth() / 2 - jd.getWidth() / 2,
 				jf.getY() + jf.getHeight() / 2 - jd.getHeight() / 2);
 		jd.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		jd.setResizable(false);
 		
 		//添加标签
-		JLabel label = new JLabel("RANK");
-		label.setFont(new Font("Kemco Pixel Bold",Font.PLAIN, 20));
-		label.setBounds(jd.getX() + jd.WIDTH / 2,jd.getY() + jd.HEIGHT / 2, 300, 80);
+		JLabel label = new JLabel("RANK",JLabel.CENTER);
+		label.setFont(new Font("Kemco Pixel Bold",Font.PLAIN,50));
+		label.setBounds(80, 0, 300, 50);
+		
+		//获取排行榜文本
+		String text = "<html>";
+		for(int i = 0; i <= 6 ; i++)
+		{
+			if(ranks[i] == null)
+			{
+				text = text.concat("</html>");
+				break;
+			}
+			else {
+				text = text.concat(ranks[i] + "<br>");
+			}
+		}
 		
 		//添加排行榜标签
-		JLabel label2 = new JLabel("where");
-		label2.setBounds(jd.WIDTH / 2, jd.HEIGHT / 2, 300, 80);
+		JLabel label2 = new JLabel(text, JLabel.CENTER);
+		label2.setFont(new Font("Kemco Pixel Bold",Font.PLAIN, 18));
+		label2.setBounds(0, 0, 300, 350);
 		
 		//设置面板,以供添加组件
 		JPanel jp = new JPanel();
+		jp.setLayout(null);
 		jp.add(label);
 		jp.add(label2);
 		
