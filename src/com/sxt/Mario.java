@@ -9,7 +9,7 @@ public class Mario implements Runnable {
 	// 用于表示横纵坐标
 	private int x;
 	private int y;
-
+	
 	// 用于表示当前的状态
 	private String status;
 	// 用于显示当前状态对应的图像
@@ -18,14 +18,30 @@ public class Mario implements Runnable {
 	private BackGround backGround = new BackGround();
 	// 用来实现马里奥的动作
 	private Thread thread = null;
+	
 	// 马里奥的移动速度
-	private int xSpeed;
+	private double xSpeed;
 	// 马里奥的跳跃速度
 	private int ySpeed;
+	// 马里奥水平加速度
+	private double xAccSpeed;
+	// 马里奥竖直加速度
+	private int yAccSpeed;
+	// 定义水平方向最大速度;
+	private double xMaxSpeed = 10.0;
+
+	// 定义水平启动加速度常量
+	final private double ACC = 0.80;
+	// 定义转向加速度常量
+	final private double TURNACC = 0.9;
+	// 停止加速度
+	final private double FRICTION = -0.08;
+	// 定义重力加速度常量
+	final private int GRAVITY = 9;
+
+	
 	// 定义一个索引
 	private int index;
-	// 马里奥上升时间
-	private int upTime = 0;
 	// 判断马里奥是否走到了城堡门口
 	private boolean isOK;
 	// 判断马里奥是否死亡
@@ -53,251 +69,134 @@ public class Mario implements Runnable {
 
 	// 马里奥向左移动
 	public void leftMove() {
-		// 启动，改变速度
-		xSpeed = -5;
-		// 判断马里奥是否碰到旗子
-		if (backGround.isReach()) {
-			xSpeed = 0;
-		}
-
-		// 判断马里奥是否处于空中
-		if (status.indexOf("jump") != -1) {
-			status = "jump--left";
-		} else {
-			status = "move--left";
-		}
+		//判断是要转向还是启动
+		status = "move--left";
 	}
 
 	// 马里奥向右移动
 	public void rightMove() {
-		xSpeed = 5;
+		//判断是要转向还是启动
+		status = "move--right";
+		
 
-		// 判断马里奥是否碰到旗子
-		if (backGround.isReach()) {
-			xSpeed = 0;
-		}
-		if (status.indexOf("jump") != -1) {
-			status = "jump--right";
-		} else {
-			status = "move--right";
-		}
 	}
-
 	// 马里奥向左停止
 	public void leftStop() {
-		xSpeed = 0;
-		if (status.indexOf("jump") != -1) {
-			status = "jump--left";
-		} else {
-			status = "stop--left";
-		}
+		status = "stop--left";
 	}
-
 	// 马里奥向右停止
 	public void rightStop() {
-		xSpeed = 0;
-		if (status.indexOf("jump") != -1) {
-			status = "jump--right";
-		} else {
-			status = "stop--right";
-		}
+		status = "stop--right";
 	}
-
 	// 马里奥跳跃
 	public void jump() {
-		if (status.indexOf("jump") == -1) {
-			if (status.indexOf("left") != -1) {
-				status = "jump--left";
-			} else {
-				status = "jump--right";
-			}
-
-			ySpeed = -10;
-			upTime = 7;
-		}
-
-		// 判断马里奥是否碰到旗子
-		if (backGround.isReach()) {
-			ySpeed = 0;
-		}
+		if(xSpeed >= 0)
+			status = "jump--right";
+		else if(xSpeed < 0)
+			status = "jump--left";
+		yAccSpeed = GRAVITY;//加速度向下
 	}
-
 	// 马里奥下落
 	public void fall() {
-		if (status.indexOf("left") != -1) {
-			status = "jump--left";
-		} else {
+		if(xSpeed >= 0)
 			status = "jump--right";
-		}
-		ySpeed = 10;
-
+		else if(xSpeed < 0)
+			status = "jump--left";
+		yAccSpeed = GRAVITY;
 	}
+
 
 	@Override
 	public void run() {
 		for (index = 0; index < 22; index++) {
 			// 判断是否处于障碍物上
-			boolean onObstacle = false;
+			boolean onObstacle = true;
 			// 判断是否可以往右走
 			boolean canRight = true;
 			// 判断是否可以往左走
 			boolean canLeft = true;
 			// 判断马里奥是否到达旗杆位置
-			if (backGround.isFlag() && this.x >= 500) {
-				this.backGround.setReach(true);
-
-				// 判断旗子是否下落完成
-				if (this.backGround.isBase()) {
-					status = "move--right";
-					if (x < 690) {
-						x += 5;
-					} else {
-						isOK = true;
+			boolean isFlag = false;
+			
+			
+			/************ 马里奥移动板块 *************/
+			//TODO finish this
+			if(status.indexOf("move") != -1)//即含有move
+			{
+				if(status.indexOf("right") != -1)//向右移动
+				{
+					if(xSpeed < 0) {
+						xAccSpeed = TURNACC; 
+					}else if(xSpeed >= 0) {
+						xAccSpeed = ACC;
 					}
-				} else {
-					if (y < 395) {
-						xSpeed = 0;
-						this.y += 5;
-						status = "jump--right";
-					}
-
-					if (y > 395) {
-						this.y = 395;
-						status = "stop--right";
-					}
-				}
-			} else {
-				// 遍历当前场景里所有的障碍物
-				for (int i = 0; i < backGround.getObstacleList().size(); i++) {
-					Obstacle ob = backGround.getObstacleList().get(i);
-					// 判断马里奥是否位于障碍物上
-					if (ob.getY() == this.y + 25 //
-							&& ob.getX() > this.x - 30 && ob.getX() < this.x + 25) {
-						onObstacle = true;
-					}
-					// 判断马里奥是否顶到方块
-					if ((ob.getY() >= this.y - 30 && ob.getY() <= this.y - 20)
-							&& (ob.getX() > this.x - 30 && ob.getX() < this.x + 25)) {
-						if (ob.getType() == 0) {
-							backGround.getObstacleList().remove(ob);
-							score = getScore() + 1;
-						}
-						upTime = 0;
-					}
-
-					// 判断是否可以往右走
-					if (ob.getX() == this.x + 25 && (ob.getY() > this.y - 30 && ob.getY() < this.y + 25)) {
-						canRight = false;
-					}
-
-					// 判断是否可以往左走
-					if (ob.getX() == this.x - 30 && (ob.getY() > this.y - 30 && ob.getY() < this.y + 25)) {
-						canLeft = false;
-					}
-
-				}
-				// 判断马里奥是否碰到敌人死亡或者踩死蘑菇敌人
-				for (int i = 0; i < backGround.getEnemyList().size(); i++) {
-					Enemy e = backGround.getEnemyList().get(i);
-
-					if (e.getY() == this.y + 20 && (e.getX() - 25 < this.x && e.getX() + 35 >= this.x)) {
-						if (e.getType() == 1) {
-							e.death();
-							score = getScore() + 2;
-							upTime = 3;
-							ySpeed = -10;
-						} else if (e.getType() == 2) {
-							// 马里奥死亡
-							this.death();
-						}
-					}
-
-					if ((e.getX() + 35 > this.x && e.getX() - 25 < this.x)
-							&& (e.getY() + 35 > this.y && e.getY() - 20 < this.y)) {
-						// 马里奥死亡
-						this.death();
-					}
-				}
-
-				// 进行马里奥跳跃的操作
-				if (onObstacle && upTime == 0) {
-					if (status.indexOf("left") != -1) {
-						if (xSpeed != 0) {
-							status = "move--left";
-						} else {
-							status = "stop--left";
-						}
-					} else {
-						if (xSpeed != 0) {
-							status = "move--right";
-						} else {
-							status = "stop--right";
-						}
-					}
-				} else {
-					if (upTime != 0) {
-						upTime--;
-					} else {
-						fall();
-					}
-					y += ySpeed;
-				}
-				//坐标改变
-				if ((canLeft && xSpeed < 0) || (canRight && xSpeed > 0)) {
-					x += xSpeed;
-					// 判断马里奥是否到了最左边
-					if (x < 0) {
-						x = 0;
-					}
-				}
-			}
-			// 判断当前是否是移动状态
-			if (status.contains("move")) {
-				// 判断是否向左移动
-				if ("move--left".equals(status)) {
-					show = StaticValue.run_L.get(index);// 展示马里奥的图片（索引）
-//						System.out.println("L:" + index);// 用于检查索引是否出错
 					
+				}else if (status.indexOf("left") != -1) {
+					
+					if(xSpeed > 0) {
+						xAccSpeed = -TURNACC; 
+					}else if(xSpeed <= 0) {
+						xAccSpeed = -ACC;
+					}
 				}
-				// 判断是否向右移动
-				if ("move--right".equals(status)) {
-					show = StaticValue.run_R.get(index);// 展示马里奥的图片（索引）
-//						System.out.println("R:" + index);// 用于检查索引是否出错
+			}else if(status.indexOf("stop") != -1) {
+				if(status.indexOf("right") != -1)//向右减速
+				{
+					xAccSpeed = FRICTION;
+					if(xSpeed > 0)
+						xSpeed += xAccSpeed;
+					else if(xSpeed <= 0)
+					{
+						xAccSpeed = 0;
+						xSpeed = 0;
+					}
+					
+				}else if (status.indexOf("left") != -1) {
+					xAccSpeed = -FRICTION;
+					if(xSpeed < 0)
+						xSpeed += xAccSpeed;
+					else if(xSpeed >= 0)
+					{
+						xAccSpeed = 0;
+						xSpeed = 0;
+					}
 				}
-
-
 			}
-
-			// 判断是否向左停止
-			if ("stop--left".equals(status)) {
-				show = StaticValue.stand_L;
-			}
-			// 判断是否向右停止
-			if ("stop--right".equals(status)) {
-				show = StaticValue.stand_R;
-			}
-			// 判断是否向左跳跃
-			if ("jump--left".equals(status)) {
-				show = StaticValue.jump_L;
-			}
-			// 判断是否向右跳跃
-			if ("jump--right".equals(status)) {
-				show = StaticValue.jump_R;
-			}
-
-//			System.out.println(index);//调试index
-			if(index == 21){
-				index = 0;
+			//判断是否达到最大速度
+			if(Math.abs(xSpeed) < xMaxSpeed) {
+				xSpeed += xAccSpeed;
+			}else if(status.indexOf("move") != -1 && status.indexOf("right") != -1) {
+				xAccSpeed = 0;
+				xSpeed = xMaxSpeed;
+			}else if(status.indexOf("move") != -1 && status.indexOf("left") != -1) {
+				xAccSpeed = 0;
+				xSpeed = -xMaxSpeed;
 			}
 			
+//			xAccSpeed += xSpeed * FRICTION;
+			xSpeed += xAccSpeed;
+			x += xSpeed + 0.5 * xAccSpeed;
+			System.out.println(status);
+			/****************** 马里奥移动板块ENDING ****************/
+
+			//线程休眠
 			try {
 				Thread.sleep(45);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+
+			//刷新index，写死循环
+			if(index == 21)
+			{
+				index = 0;
+			}
 		}
 	}
 
+	
+	
+// Setter and Getters
 	public int getX() {
 		return x;
 	}
@@ -340,6 +239,57 @@ public class Mario implements Runnable {
 
 	public int getScore() {
 		return score;
+	}
+
+	public double getxMaxSpeed() {
+		return xMaxSpeed;
+	}
+	public void setxMaxSpeed(double xMaxSpeed) {
+		this.xMaxSpeed = xMaxSpeed;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public Thread getThread() {
+		return thread;
+	}
+
+	public double getxSpeed() {
+		return xSpeed;
+	}
+
+	public int getySpeed() {
+		return ySpeed;
+	}
+
+	public double getxAccSpeed() {
+		return xAccSpeed;
+	}
+
+	public int getyAccSpeed() {
+		return yAccSpeed;
+	}
+
+	public double getACC() {
+		return ACC;
+	}
+
+	public double getTURNACC() {
+		return TURNACC;
+	}
+
+	public double getFRICTION() {
+		return FRICTION;
+	}
+
+	public int getGRAVITY() {
+		return GRAVITY;
+	}
+
+	public int getIndex() {
+		return index;
 	}
 
 }
