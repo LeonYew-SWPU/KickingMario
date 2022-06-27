@@ -63,7 +63,7 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 			allBg.add(new BackGround(i, i == 3 ? true : false));
 		}
 		//将第一个场景设置为当前场景
-		nowBg = allBg.get(0);
+		nowBg = allBg.get(2);
 		mario.setBackGround(nowBg);
 		//绘制图像
 		repaint();
