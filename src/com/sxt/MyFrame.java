@@ -63,7 +63,7 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 			allBg.add(new BackGround(i, i == 3 ? true : false));
 		}
 		//将第一个场景设置为当前场景
-		nowBg = allBg.get(2);
+		nowBg = allBg.get(0);
 		mario.setBackGround(nowBg);
 		//绘制图像
 		repaint();
@@ -89,8 +89,6 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 	public void keyPressed(KeyEvent e) {
 		// 37 <- 38 ↑ 39 -> 40 ↓
 		//向右移动
-
-//		System.out.println("a:" + mario.getxAccSpeed() + ",v:" + mario.getxSpeed());
 		if(e.getKeyCode() == 39){
 			mario.rightMove();
 		}
@@ -108,7 +106,6 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 	@Override
 	public void keyReleased(KeyEvent e) {
 //		System.out.println(e.getKeyCode());
-//		System.out.println("a:" + mario.getxAccSpeed() + ",v:" + mario.getxSpeed());
 		if(e.getKeyCode() == 37) {
 			mario.leftStop();
 		}
@@ -149,8 +146,12 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 		graphics.drawImage(nowBg.getGan(), 500, 220, this);
 		
 		//绘制马里奥
-		graphics.drawImage(mario.getShow(), mario.getX(), mario.getY(), this);
-		//绘制分数
+		if(!mario.isDeath()) {
+			graphics.drawImage(mario.getShow(), mario.getX(), mario.getY(), this);
+		}
+		
+		
+		// 绘制分数
 		Color c = graphics.getColor();
 		graphics.setColor(Color.WHITE);
 		graphics.setFont(new Font("Kemco Pixel Bold",Font.PLAIN, 20));
@@ -162,10 +163,7 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 
 	@Override
 	public void run() {
-		//TODO Rank List Window.
-		{
-			RankWindow rw = new RankWindow(this);
-		}
+		
 		while(true) {
 			repaint();
 			try {
@@ -195,7 +193,9 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 				e.printStackTrace();
 			}
 		}//while end
+		RankWindow rw = new RankWindow(this);
 		
+		//TODO clip the rank window.
 	}
 }
 
