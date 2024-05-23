@@ -55,6 +55,16 @@
 ## 软件架构
 本小游戏采用Java语言编写，使用Eclipse进行开发，利用Git进行同时多人共同开发，实现版本修改与迭代。
 
+# 参考资源
+> [Git-2.36.1-64-bit_3.exe](https://cdn.npmmirror.com/binaries/git-for-windows/v2.36.1.windows.1/Git-2.36.1-64-bit.exe)
+>
+> [Xmind2021破解版下载地址(含破解补丁)](https://zj.downkuai.com/softfile/soft/xmind2021pjb_136552.rar)
+> 解压密码：www.downkuai.com（将破解补丁替换Xmind安装目录下同名文件）
+>
+> [Xmind破解版原文](https://www.downkuai.com/soft/136552.html)
+>
+> [添加地图，地图根据人物移动](https://blog.csdn.net/qq_37175706/article/details/123602848)
+
 ## 团队贡献
 - 美工 & PPT：肖双武
 - 开发文档：黄柏维
