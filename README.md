@@ -1,49 +1,62 @@
-# KickingMario
+# 扫黑玛丽 简单说明书
 
-# 介绍
-34小组扫黑玛丽小游戏
-
-***上传的时候，尽量先上传到backup分支，等确认功能修改好后再上传到master分支***
+**2021级数字媒体技术第34小组**  
+**Java小游戏**  
+**游戏名:** 扫黑玛丽 (KickingMario)
 
 # 游戏截图
 
 <img alt="picture 17" src="https://cdn.jsdelivr.net/gh/LeonYew-SWPU/FileTem@main/imgs/14b5494ac2e01992921148ab4e55c80d9d409396f17e3873767f6e6c35f03e02.gif" width="300" />  <img alt="picture 18" src="https://cdn.jsdelivr.net/gh/LeonYew-SWPU/FileTem@main/imgs/8200c203a715f02d258af0207db022e690aabd2f0efe19b1122b597f29190b49.gif" width="300" />  <img alt="picture 19" src="https://cdn.jsdelivr.net/gh/LeonYew-SWPU/FileTem@main/imgs/389d7658c0e2f936e95722fe848f336add524cd794c82b07ce76aa30ba733e9c.gif" width="300" />  <img alt="picture 20" src="https://cdn.jsdelivr.net/gh/LeonYew-SWPU/FileTem@main/imgs/0c02e4b73bceb23b383cb522d306f65cba2b3545ba95352ba00d73b542725921.jpg" width="300" />  
 
-# 项目文件说明
-- bin（Java自行产生的临时文件）
-- **new_resources（准备用于替换原来素材的新文件）**
-- **resources（b站课程提供的文件，jar包之类的）**
-- **src（项目文件）**
-- .classpath（无用，vscode自行生成的）
-- .project（无用，vscode自行生成的）
-- README.md（本文件，用于解释项目）
-- 代码.png（代码脑图）
-- 代码.xmind（代码脑图源文件）
+## 一、程序运行环境
 
-# 操作说明
-· 使用方向键控制马里奥移动
-· 使用回车键发射子弹(未实现)
+### 1. 开发硬件配置:
+- 处理器: AMD Ryzen 7 5800H with Radeon Graphics (八核)
+- 内存: 16GB DDR4 3200MHz (8GB + 8GB)
+- 显卡: NVIDIA GeForce RTX 3060 Laptop GPU (6GB / 联想)
 
-# 软件架构
+### 2. 开发软件配置：
+- 操作系统: Windows 11
+- 开发工具: Eclipse 2022-06 (4.24.0)
 
-本程序采用Java编写
+### 3. 编译运行标准：
+- JavaSE-1.8 (JRE)
 
-# 团队贡献
-美工 & PPT：    肖双武
-开发文档：        黄柏维
-代码：        黄柏维&黎恩瑜
-Git建立 & PPT美化：        黎恩瑜
+## 二、程序说明
 
-# 安装教程
+### 1. 程序文件说明：
+- .git (Git软件产生)
+- .setting (Git软件设置参数)
+- bin (项目编译文件)
+- src (项目文件)
+- .project (无用，Git自行生成的)
+- readme.txt (目前文件，用以简单说明)
+- README.md (本文件，用于解释项目)
+- 代码.png (代码脑图)
+- 代码.xmind (代码脑图源文件)
 
-(略)
+### 2. 操作说明：
+- 使用左右方向键控制马里奥进行移动
+- 使用上方向键控制马里奥进行跳跃
+- 使用回车键发射子弹 (暂未实现)
 
-# 参考资源
-> [Git-2.36.1-64-bit_3.exe](https://cdn.npmmirror.com/binaries/git-for-windows/v2.36.1.windows.1/Git-2.36.1-64-bit.exe)
->
-> [Xmind2021破解版下载地址(含破解补丁)](https://zj.downkuai.com/softfile/soft/xmind2021pjb_136552.rar)
-> 解压密码：www.downkuai.com（将破解补丁替换Xmind安装目录下同名文件）
->
-> [Xmind破解版原文](https://www.downkuai.com/soft/136552.html)
->
-> [添加地图，地图根据人物移动](https://blog.csdn.net/qq_37175706/article/details/123602848)
+### 3. 角色死亡说明：
+- 如果角色触碰到黑恶势力敌人立即死亡，游戏结束
+
+### 4. 游戏积分说明：
+- 破坏一个可破坏砖块可获得1分
+- 踩死一个黑恶势力份子可获得3分
+
+### 5. 游戏关卡说明：
+1. 第一关：设有一个可水平移动黑恶势力敌人和一个可垂直移动敌人，需要找准时机避开敌人即可进入下一关。
+2. 第二关：设有两个可水平移动黑恶势力敌人和两个可垂直移动敌人，除避开敌人外，还需要跳跃到最上面的方块才能通关。
+3. 第三关：设有一个水平移动敌人，触碰到旗杆即可通过，结束游戏。
+
+## 软件架构
+本小游戏采用Java语言编写，使用Eclipse进行开发，利用Git进行同时多人共同开发，实现版本修改与迭代。
+
+## 团队贡献
+- 美工 & PPT：肖双武
+- 开发文档：黄柏维
+- 代码：黄柏维 & 黎恩瑜
+- Git建立：黎恩瑜
