@@ -65,7 +65,7 @@
 >
 > [Xmind2021破解版下载地址(含破解补丁)](https://zj.downkuai.com/softfile/soft/xmind2021pjb_136552.rar)
 > 解压密码：www.downkuai.com（将破解补丁替换Xmind安装目录下同名文件）
->
+
 > [Xmind破解版原文](https://www.downkuai.com/soft/136552.html)
 >
 > [添加地图，地图根据人物移动](https://blog.csdn.net/qq_37175706/article/details/123602848)
